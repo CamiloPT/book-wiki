@@ -1,0 +1,37 @@
+<div class="columns is-multiline is-4-desktop is-4-mobile is-variable is-4">
+  <div class="column is-full margin-bottom" *ngFor="let book of books">
+    <div class="card">
+      <div class="card-content columns">
+        <div class="column is-three-quarters columns">
+          <figure class="column">
+            <p class="image is-64x64">
+              <img
+                [src]="
+                  'https://covers.openlibrary.org/b/id/' +
+                  book.cover_i +
+                  '-S.jpg'
+                "
+                alt="Placeholder image"
+              />
+            </p>
+          </figure>
+          <div class="column is-full">
+            <p class="subtitle">{{ book.title }}</p>
+            <p class="">{{ book.author_name }}</p>
+            <p class="">{{ book.publish_year | slice : 0 : 5 }}</p>
+          </div>
+        </div>
+        <div class="column columns">
+          <div class="column">
+            <button class="button is-primary" (click)="addToFavorites(book)">
+              Want to read
+            </button>
+          </div>
+          <div class="column">
+            <button class="button" (click)="openDetails(book)">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

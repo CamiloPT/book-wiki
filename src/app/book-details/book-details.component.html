@@ -1,0 +1,33 @@
+<div class="container" *ngIf="book$ | async as book; else loading">
+  <p class="title">{{ book.title }}</p>
+  <div class="columns">
+    <div class="column">
+      <figure>
+        <p class="image is-256x256">
+          <img
+            [src]="
+              'https://covers.openlibrary.org/b/id/' + book.covers[0] + '-L.jpg'
+            "
+            alt="Placeholder image"
+          />
+        </p>
+      </figure>
+    </div>
+    <div class="column is-three-quarters">
+      <p><strong>Description:</strong> {{ book.description.value }}</p>
+      <p>
+        <strong>Authors: </strong>
+        <span *ngFor="let author of book.authors"
+          >{{ author.name }}, {{ author.birth_date }}</span
+        >
+      </p>
+      <p><strong>Subjects:</strong> {{ book.subjects | slice : 0 : 10 }}</p>
+      <p><strong>Publish Date:</strong> {{ book.first_publish_date }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="columns is-centered">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

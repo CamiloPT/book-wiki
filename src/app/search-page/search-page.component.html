@@ -1,0 +1,70 @@
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input is-large is-rounded"
+          type="text"
+          placeholder="What do you want to read today?"
+          [(ngModel)]="search"
+          (keyup)="searchBooks($event)"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <p class="title">Suggestions</p>
+  <div
+    *ngIf="suggestions$ | async as suggestions; else loading"
+    class="columns is-centered"
+  >
+    <div class="column" *ngFor="let suggestion of suggestions | slice : 0 : 4">
+      <div class="card">
+        <div class="card-content">
+          <div class="columns is-desktop">
+            <div
+              class="column is-one-third-desktop is-full-mobile is-full-tablet"
+            >
+              <figure class="img-height image is-96x96">
+                <img
+                  [src]="
+                    'https://covers.openlibrary.org/b/id/' +
+                    suggestion.cover_i +
+                    '-M.jpg'
+                  "
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="column media-content">
+              <p class="title is-4">{{ suggestion.title }}</p>
+              <p class="subtitle is-6">{{ suggestion.author_name }}</p>
+            </div>
+          </div>
+
+          <div class="content">
+            <button
+              class="button is-primary"
+              (click)="addToFavorites(suggestion)"
+            >
+              Want to read
+            </button>
+            <button class="button" (click)="openBook(suggestion)">
+              Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="columns is-centered">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<div class="container">
+  <p class="title">Book List</p>
+  <app-list
+    *ngIf="books$ | async as books; else loading"
+    [books]="books"
+  ></app-list>
+</div>
+<ng-template #loading>
+  <div class="columns is-centered">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

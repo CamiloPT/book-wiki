@@ -1,0 +1,32 @@
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <strong>Books Wiki</strong>
+      </a>
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
+      >
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" routerLink="/favorites">Favorites</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero bg-gray is-fullheight">
+  <div class="hero-body">
+    <div class="container mt-4 is-align-items-center">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>
